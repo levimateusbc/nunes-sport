@@ -1,5 +1,8 @@
+import { DefaultLayoutAdmin } from "../../components";
+
 export default function ManageProduct(){
     return(
-        <>gerenciador de produto</>
+        <DefaultLayoutAdmin>
+        </DefaultLayoutAdmin>
     )
 }
