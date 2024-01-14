@@ -1,4 +1,4 @@
-export interface CustomButtonProps{
+export interface DefaultButtonProps{
     type?: "link" | "text" | "default" | "primary" | "dashed" | undefined
     label: string;
     htmlType?: "submit" | "button" | "reset";

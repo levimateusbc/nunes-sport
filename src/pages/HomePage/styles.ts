@@ -28,6 +28,6 @@ export const TableContainer = styled.div`
 
 export const TableInnerContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
 `;

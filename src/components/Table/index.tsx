@@ -42,7 +42,7 @@ const columns: TableProps<DataType>["columns"] = [
     ),
   },
   {
-    title: "Action",
+    title: "Ação",
     key: "action",
     render: (_, record) => (
       <Space size="middle">

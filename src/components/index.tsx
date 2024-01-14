@@ -1,17 +1,18 @@
 import InputDefault from "./Inputs";
-import CustomButton from './Buttons'
 import Header from "./Header";
 import DefaultLayoutAdmin from "./Layout";
 import DropdownCustom from "./Dropdown";
 import Title from "./Title";
 import CustomTable from "./Table";
+import { IconButton, DefaultButton } from "./Buttons";
 
 export {
-    InputDefault,
-    CustomButton,
-    Header,
-    DefaultLayoutAdmin,
-    DropdownCustom,
-    Title,
-    CustomTable
-}
+  InputDefault,
+  Header,
+  DefaultLayoutAdmin,
+  DropdownCustom,
+  Title,
+  CustomTable,
+  IconButton,
+  DefaultButton,
+};

@@ -1,5 +1,5 @@
 import { Form } from "antd";
-import { InputDefault,CustomButton } from "../../components";
+import { InputDefault,DefaultButton } from "../../components";
 import * as S from "./styles";
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
             <InputDefault label={"Senha"} placeholder={"Informe sua senha"} type={"password"} />
           </Form.Item>
           <Form.Item>
-            <CustomButton type={"primary"} htmlType={"submit"} label={"Entrar"}/>
+            <DefaultButton type={"primary"} htmlType={"submit"} label={"Entrar"}/>
           </Form.Item>
         </S.FormContent>
       </S.Content>

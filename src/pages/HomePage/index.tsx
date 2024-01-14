@@ -1,13 +1,15 @@
 import { Card } from "antd";
 import {
-  CustomButton,
+  DefaultButton,
   CustomTable,
   DefaultLayoutAdmin,
   Title,
+  IconButton,
 } from "../../components";
 import Search, { SearchProps } from "antd/es/input/Search";
-import * as S from "./styles";
 import { useScreenSize } from "../../Utils";
+import * as S from "./styles";
+import { PlusOutlined } from "@ant-design/icons";
 
 export default function HomePage() {
   const screenSize = useScreenSize();
@@ -39,25 +41,20 @@ export default function HomePage() {
       </S.CardsContainer>
       <S.TableContainer>
         <S.TableInnerContainer>
-          <Search
-            placeholder={"Busque por produtos"}
-            onSearch={onSearch}
-            style={{ width: "70%" }}
-          />
           {screenSize === "mobile" ? (
-            <p>mobile</p>
+            <IconButton>
+              <PlusOutlined />
+            </IconButton>
           ) : (
-            <div>
-              <CustomButton
-                label={"Adicionar Produto"}
-                htmlType={"button"}
-                type={"primary"}
-                width={"192px"}
-              />
-            </div>
+            <DefaultButton
+              label={"Adicionar Produto"}
+              htmlType={"button"}
+              type={"primary"}
+              width={"150px"}
+            />
           )}
         </S.TableInnerContainer>
-          <CustomTable />
+        <CustomTable />
       </S.TableContainer>
     </DefaultLayoutAdmin>
   );
