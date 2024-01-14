@@ -24,4 +24,9 @@ export const Footer = styled.div`
   margin-top: 2rem;
   justify-content: flex-end;
   gap: 1rem;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 360px) {
+    
+  }
 `;

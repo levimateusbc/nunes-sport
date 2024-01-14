@@ -8,12 +8,19 @@ import {
 } from "../../components";
 import { RegisterProductProps } from "./interface";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { createProduct } from "../../Services/api";
+import { useScreenSize } from "../../Utils";
 import * as S from "./styles";
+import { message } from "antd";
 
 export default function RegisterProduct({ pageId }: RegisterProductProps) {
+  const [productDescription, setProductDescription] = useState<string>("");
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const screenSize = useScreenSize();
 
   const navigate = useNavigate();
-
   function handleTitlePage(): string {
     if (!pageId) {
       return "Cadastro de Produto";
@@ -31,30 +38,49 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
   }
 
   function handleCancel(): void {
-    navigate("/")
-    
+    navigate("/");
   }
+
+  const handleSave = (values: any) => {
+    console.log(values);
+
+    createProduct({
+      description: values.description,
+      name: values.name,
+      cod: Number(values.cod),
+      value: Number(values.value),
+    });
+    messageApi.open({
+      type: "success",
+      content: "Produto cadastrado com sucesso!",
+    });
+  };
 
   return (
     <DefaultLayoutAdmin>
+      {contextHolder}
       <Title title={handleTitlePage()} subtitle={handleSubtitlePage()} />
       <S.FormContent
         name={"register-product"}
-        // onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
+        initialValues={{ remember: true }}
+        onFinish={handleSave}
         autoComplete={"off"}
       >
         <S.InputContainer>
           <Form.Item
+            name={"name"}
             rules={[{ required: true, message: "Please input your username!" }]}
           >
             <InputDefault
               label={"Nome do produto"}
               placeholder={"digite aqui"}
               count={{ max: 40, show: true }}
+              value={productDescription}
+              onChange={(e: any) => setProductDescription(e.target.value)}
             />
           </Form.Item>
           <Form.Item
+            name={"cod"}
             rules={[
               { required: false, message: "Please input your password!" },
             ]}
@@ -67,6 +93,7 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
             />
           </Form.Item>
           <Form.Item
+            name={"value"}
             rules={[
               { required: false, message: "Please input your password!" },
             ]}
@@ -78,7 +105,7 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
             />
           </Form.Item>
         </S.InputContainer>
-        <Form.Item>
+        <Form.Item name={"description"}>
           <TextAreaCustom
             placeholder={"Digite aqui"}
             label={"Descrição"}
@@ -92,8 +119,8 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
               type={"dashed"}
               htmlType={"reset"}
               label={"Cancelar"}
-              width={"150px"}
-              onClick={()=> handleCancel()}
+              width={screenSize === "mobile" ? "100%" : "150px"}
+              onClick={() => handleCancel()}
             />
           </Form.Item>
           <Form.Item>
@@ -101,7 +128,7 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
               type={"primary"}
               htmlType={"submit"}
               label={"Cadastrar"}
-              width={"150px"}
+              width={screenSize === "mobile" ? "100%" : "150px"}
             />
           </Form.Item>
         </S.Footer>

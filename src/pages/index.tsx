@@ -1,9 +1,5 @@
-import HomePage from './HomePage';
-import RegisterProduct from './RegisterProduct';
-import Login from './Login';
+import HomePage from "./HomePage";
+import RegisterProduct from "./RegisterProduct";
+import Login from "./Login";
 
-export {
-    Login,
-    HomePage,
-    RegisterProduct,
-}
+export { Login, HomePage, RegisterProduct };

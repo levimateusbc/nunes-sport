@@ -1,3 +1,3 @@
-export interface RegisterProductProps{
-    pageId?: string;
+export interface RegisterProductProps {
+  pageId?: string;
 }

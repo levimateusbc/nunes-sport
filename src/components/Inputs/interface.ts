@@ -1,5 +1,7 @@
+import { valueType } from "antd/es/statistic/utils";
+
 export interface InputCustomerProps {
-  placeholder: string;
+  placeholder?: string | undefined;
   type?: "string" | "password" | "number" | "email";
   label: string;
   defaultValue?: string | number | readonly string[] | undefined;
@@ -7,4 +9,6 @@ export interface InputCustomerProps {
     max: number;
     show: boolean;
   };
+  value?: valueType;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
