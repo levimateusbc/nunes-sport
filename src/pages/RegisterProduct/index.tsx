@@ -7,9 +7,13 @@ import {
   Title,
 } from "../../components";
 import { RegisterProductProps } from "./interface";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 
 export default function RegisterProduct({ pageId }: RegisterProductProps) {
+
+  const navigate = useNavigate();
+
   function handleTitlePage(): string {
     if (!pageId) {
       return "Cadastro de Produto";
@@ -24,6 +28,11 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
     } else {
       return "Atualize detalhes rapidamente. Acesse o formulário pré-preenchido, ajuste as informações necessárias e salve as alterações para manter seus produtos sempre atualizados.";
     }
+  }
+
+  function handleCancel(): void {
+    navigate("/")
+    
   }
 
   return (
@@ -84,6 +93,7 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
               htmlType={"reset"}
               label={"Cancelar"}
               width={"150px"}
+              onClick={()=> handleCancel()}
             />
           </Form.Item>
           <Form.Item>

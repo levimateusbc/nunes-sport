@@ -6,16 +6,18 @@ import {
   Title,
   IconButton,
 } from "../../components";
-import Search, { SearchProps } from "antd/es/input/Search";
 import { useScreenSize } from "../../Utils";
-import * as S from "./styles";
 import { PlusOutlined } from "@ant-design/icons";
+import * as S from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const screenSize = useScreenSize();
+  const navigate = useNavigate();
 
-  const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
-    console.log(info?.source, value);
+  function handleNavigateToRegisterProduct(): void {
+    navigate("/register-product");
+  }
 
   return (
     <DefaultLayoutAdmin>
@@ -42,7 +44,7 @@ export default function HomePage() {
       <S.TableContainer>
         <S.TableInnerContainer>
           {screenSize === "mobile" ? (
-            <IconButton>
+            <IconButton onClick={() => handleNavigateToRegisterProduct()}>
               <PlusOutlined />
             </IconButton>
           ) : (
@@ -51,6 +53,7 @@ export default function HomePage() {
               htmlType={"button"}
               type={"primary"}
               width={"150px"}
+              onClick={() => handleNavigateToRegisterProduct()}
             />
           )}
         </S.TableInnerContainer>
