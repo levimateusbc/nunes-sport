@@ -1,13 +1,12 @@
-import { InputCustomerProps } from "./interface";
+import { TextAreaCustomProps } from "./interface";
 import * as S from "./styles";
 
-export default function InputDefault({
+export default function TextAreaCustom({
   placeholder,
   label,
   count,
   defaultValue,
-  type,
-}: InputCustomerProps) {
+}: TextAreaCustomProps) {
   return (
     <S.Container>
       <S.Label>{label}</S.Label>
@@ -15,7 +14,6 @@ export default function InputDefault({
         placeholder={placeholder}
         defaultValue={defaultValue}
         count={count}
-        type={type}
       />
     </S.Container>
   );

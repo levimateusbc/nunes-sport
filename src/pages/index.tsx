@@ -1,9 +1,9 @@
 import HomePage from './HomePage';
-import ManageProduct from './ManageProduct';
+import RegisterProduct from './RegisterProduct';
 import Login from './Login';
 
 export {
     Login,
     HomePage,
-    ManageProduct,
+    RegisterProduct,
 }

@@ -1,10 +1,10 @@
-export interface InputCustomerProps {
+export interface TextAreaCustomProps {
   placeholder: string;
-  type?: "string" | "password" | "number" | "email";
   label: string;
   defaultValue?: string | number | readonly string[] | undefined;
   count?: {
     max: number;
     show: boolean;
   };
+  autoSize?: boolean | { minRows: number, maxRows: number };
 }
