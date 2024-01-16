@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const getDadosDaAPI = async () => {
   try {
-    const response = await api.get("/findAll");
+    const response = await api.get("/list");
     console.log("response", response);
     return response.data;
   } catch (error) {
@@ -20,8 +20,10 @@ export const createProduct = async (productData: {
   cod: number;
   description: string;
 }) => {
+  console.log(productData, "<api");
   try {
-    const response = await api.post("/createProduct", productData);
+    const response = await api.post("/create-products", productData);
+
     return response.data;
   } catch (error) {
     throw error;

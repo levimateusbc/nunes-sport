@@ -1,20 +1,13 @@
-import { Col, Empty, Row, Space, Table, Tag } from "antd";
+import { Col, Empty, Row, Space, Table } from "antd";
 import type { TableProps } from "antd";
+import { CustomTableProps, DataType } from "./interface";
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
 
 const columns: TableProps<DataType>["columns"] = [
   {
     title: "Nome",
     dataIndex: "name",
     key: "name",
-    render: (text) => <a>{text}</a>,
   },
   {
     title: "Descrição",
@@ -23,39 +16,22 @@ const columns: TableProps<DataType>["columns"] = [
   },
   {
     title: "Valor",
-    key: "value",
+    key: "price",
     dataIndex: "value",
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
   },
   {
     title: "Ação",
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <a>Editar</a>
+        <a>Deletar</a>
       </Space>
     ),
   },
 ];
 
-const data: DataType[] = [];
-
-export default function CustomTable() {
+export default function CustomTable({data}: CustomTableProps) {
   return (
     <Row>
       <Col xs={24} sm={24} md={24} lg={24} xl={24}>

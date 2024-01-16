@@ -8,8 +8,11 @@ import {
 } from "../../components";
 import { useScreenSize } from "../../Utils";
 import { PlusOutlined } from "@ant-design/icons";
-import * as S from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getDadosDaAPI } from "../../Services/api";
+import * as S from "./styles";
+import { DataType } from "../../components/Table/interface";
 
 export default function HomePage() {
   const screenSize = useScreenSize();
@@ -18,6 +21,21 @@ export default function HomePage() {
   function handleNavigateToRegisterProduct(): void {
     navigate("/register-product");
   }
+
+  const [dados, setDados] = useState<DataType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dadosDaAPI = await getDadosDaAPI();
+        // setDados(dadosDaAPI?.result);
+        setDados(dadosDaAPI.result)
+      } catch (error) {
+        console.error("Erro ao obter dados da API:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <DefaultLayoutAdmin>
@@ -57,7 +75,7 @@ export default function HomePage() {
             />
           )}
         </S.TableInnerContainer>
-        <CustomTable />
+        <CustomTable data={dados} />
       </S.TableContainer>
     </DefaultLayoutAdmin>
   );

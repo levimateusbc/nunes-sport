@@ -41,10 +41,10 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
     navigate("/");
   }
 
-  const handleSave = (values: any) => {
+   const handleSave =  async (values: any) => {
     console.log(values);
 
-    createProduct({
+    await createProduct({
       description: values.description,
       name: values.name,
       cod: Number(values.cod),
