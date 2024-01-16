@@ -7,4 +7,4 @@ export interface TextAreaCustomProps {
     show: boolean;
   };
   autoSize?: boolean | { minRows: number, maxRows: number };
-}
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement> | undefined}

@@ -7,7 +7,6 @@ const api = axios.create({
 export const getDadosDaAPI = async () => {
   try {
     const response = await api.get("/list");
-    console.log("response", response);
     return response.data;
   } catch (error) {
     throw error;
@@ -16,14 +15,28 @@ export const getDadosDaAPI = async () => {
 
 export const createProduct = async (productData: {
   name: string;
-  value: number;
-  cod: number;
+  price: number;
+  productCode: number;
   description: string;
 }) => {
-  console.log(productData, "<api");
   try {
     const response = await api.post("/create-products", productData);
 
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const updateProduct = async (productId: string, updatedData: {
+  name?: string;
+  price?: number;
+  productCode?: number;
+  description?: string;
+}) => {
+  try {
+    const response = await api.put(`/update-products/${productId}`, updatedData);
     return response.data;
   } catch (error) {
     throw error;

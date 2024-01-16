@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createProduct } from "../../Services/api";
 import { useScreenSize } from "../../Utils";
-import * as S from "./styles";
 import { message } from "antd";
+import * as S from "./styles";
 
 export default function RegisterProduct({ pageId }: RegisterProductProps) {
   const [productDescription, setProductDescription] = useState<string>("");
@@ -41,18 +41,16 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
     navigate("/");
   }
 
-   const handleSave =  async (values: any) => {
-    console.log(values);
-
-    await createProduct({
-      description: values.description,
-      name: values.name,
-      cod: Number(values.cod),
-      value: Number(values.value),
-    });
+  const handleSave = async (values: any) => {
     messageApi.open({
       type: "success",
       content: "Produto cadastrado com sucesso!",
+    });
+    await createProduct({
+      description: values.description,
+      name: values.name,
+      productCode: Number(values.productCode),
+      price: Number(values.price),
     });
   };
 
@@ -67,9 +65,22 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
         autoComplete={"off"}
       >
         <S.InputContainer>
+          <Form.Item name={"productCode"} rules={[{ required: false }]}>
+            <InputDefault
+              label={"Código do produto"}
+              placeholder={"Digite aqui"}
+              type={"number"}
+              count={{ max: 5, show: true }}
+            />
+          </Form.Item>
           <Form.Item
             name={"name"}
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              {
+                required: true,
+                message: "Campo obrigatório. Preencha por favor!",
+              },
+            ]}
           >
             <InputDefault
               label={"Nome do produto"}
@@ -80,20 +91,7 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
             />
           </Form.Item>
           <Form.Item
-            name={"cod"}
-            rules={[
-              { required: false, message: "Please input your password!" },
-            ]}
-          >
-            <InputDefault
-              label={"Código do produto"}
-              placeholder={"Digite aqui"}
-              type={"number"}
-              count={{ max: 5, show: true }}
-            />
-          </Form.Item>
-          <Form.Item
-            name={"value"}
+            name={"price"}
             rules={[
               { required: false, message: "Please input your password!" },
             ]}
@@ -105,7 +103,10 @@ export default function RegisterProduct({ pageId }: RegisterProductProps) {
             />
           </Form.Item>
         </S.InputContainer>
-        <Form.Item name={"description"}>
+        <Form.Item
+          name={"description"}
+          rules={[{ required: false, message: "Please input your password!" }]}
+        >
           <TextAreaCustom
             placeholder={"Digite aqui"}
             label={"Descrição"}
